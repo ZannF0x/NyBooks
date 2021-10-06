@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NyBooks</string>
+
+    <!-- Books Activity -->
+    <string name="books_toolbar_title">Books</string>
+
+
 </resources>
