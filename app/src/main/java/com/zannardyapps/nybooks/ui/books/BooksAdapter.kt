@@ -1,4 +1,4 @@
-package com.zannardyapps.nybooks.ui
+package com.zannardyapps.nybooks.ui.books
 
 import android.view.LayoutInflater
 import android.view.View

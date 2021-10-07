@@ -1,7 +1,10 @@
-package com.zannardyapps.nybooks.ui
+package com.zannardyapps.nybooks.ui.books
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zannardyapps.nybooks.R
@@ -12,14 +15,27 @@ class BooksActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBooksBinding
 
+    private val booksViewModel: BooksViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBooksBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         toolbarSettings()
-        initAdapter()
 
+        // ViewModel:
+        booksViewModel.getBooks()
+        booksViewModel.booksLiveData.observe(this, Observer { list ->
+
+            list?.let { books ->
+                initAdapter(books)
+            }
+            if (list == null){
+                Toast.makeText(this, "ERRO: ListNull", Toast.LENGTH_LONG).show()
+            }
+
+        })
     }
 
     private fun toolbarSettings(){
@@ -28,7 +44,8 @@ class BooksActivity : AppCompatActivity() {
         setSupportActionBar(toolbarBooksActivity)
     }
 
-    private fun initAdapter(){
+    private fun initAdapter(listBook: List<Book>){
+
         binding.recyclerViewBooksActivity.apply {
 
             layoutManager = LinearLayoutManager(
@@ -38,26 +55,9 @@ class BooksActivity : AppCompatActivity() {
 
             setHasFixedSize(true)
 
-            adapter = BooksAdapter(getList())
-
+            adapter = BooksAdapter(listBook)
         }
+
     }
-
-    // Dados Mocados para TESTE!
-    private fun getList() = listOf<Book>(
-        Book(
-            title = "Os Segredos da Mente Milionária",
-            author = "T. Harv Eker"
-        ),
-        Book(
-            title = "A Cabana",
-            author = "William P. Young"
-        ),
-        Book(
-            title = "O Milagre da Manhã",
-            author = "Hal Elrod"
-        )
-    )
-
 
 }

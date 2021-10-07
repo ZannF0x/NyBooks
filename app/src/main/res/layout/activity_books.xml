@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/papel_wallpaper"
-    tools:context=".ui.BooksActivity">
+    tools:context=".ui.books.BooksActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarBooksActivity"
         android:layout_width="0dp"
         android:background="@color/black"
         app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_book"
         app:titleTextAppearance="@color/material_on_background_emphasis_high_type"
         android:layout_height="?android:attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
