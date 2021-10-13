@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiService {
 
-    private const val baseUrl: String = "https://api.nytimes.com/svc/books/v3"
+    private const val baseUrl: String = "https://api.nytimes.com/svc/books/v3/"
 
     private fun initRetrofit() = Retrofit.Builder()
         .baseUrl(baseUrl)

@@ -21,7 +21,7 @@ interface NewYorkTimesService {
     }
 
     @GET(GET_VALUE)
-    fun listRepos(
+    fun getListBooks(
 
         @Query(QUERY_API_KEY) apiKey: String = VALUE_API_KEY,
         @Query(QUERY_LIST) list: String = VALUE_LIST
