@@ -4,5 +4,9 @@
     <!-- Books Activity -->
     <string name="books_toolbar_title">Books</string>
 
+    <!-- Details Activity -->
+    <string name="title_label">Title:</string>
+    <string name="description_label">Description:</string>
+
 
 </resources>

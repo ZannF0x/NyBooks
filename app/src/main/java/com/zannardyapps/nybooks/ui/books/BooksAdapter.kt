@@ -9,17 +9,16 @@ import com.zannardyapps.nybooks.R
 import com.zannardyapps.nybooks.data.model.Book
 
 class BooksAdapter(
-    private val booksList: List<Book>
+    private val booksList: List<Book>,
+    private val onItemClickListener: ((book: Book) -> Unit)
 ):RecyclerView.Adapter<BooksAdapter.BooksViewHolder>() {
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksViewHolder {
         val view = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_book,parent,false)
 
-        return BooksViewHolder(view)
+        return BooksViewHolder(view, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: BooksViewHolder, position: Int) {
@@ -30,7 +29,10 @@ class BooksAdapter(
 
 
 
-    inner class BooksViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
+    inner class BooksViewHolder(
+        itemView: View,
+        private val onItemClickListener: ((book: Book) -> Unit)
+    ):RecyclerView.ViewHolder(itemView){
 
         private var titleView: TextView = itemView.findViewById(R.id.titleItemBook)
         private var authorView: TextView = itemView.findViewById(R.id.authorItemBook)
@@ -38,6 +40,10 @@ class BooksAdapter(
         fun bindViews(book: Book){
             titleView.text = book.title
             authorView.text = book.author
+
+            itemView.setOnClickListener {
+                onItemClickListener.invoke(book)
+            }
         }
     }
 

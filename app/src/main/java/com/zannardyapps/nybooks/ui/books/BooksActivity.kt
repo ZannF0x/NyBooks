@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zannardyapps.nybooks.R
 import com.zannardyapps.nybooks.data.model.Book
 import com.zannardyapps.nybooks.databinding.ActivityBooksBinding
+import com.zannardyapps.nybooks.ui.books.details.DetailsActivity
 
 class BooksActivity : AppCompatActivity() {
 
@@ -30,9 +31,6 @@ class BooksActivity : AppCompatActivity() {
 
             list?.let { books ->
                 initAdapter(books)
-            }
-            if (list == null){
-                Toast.makeText(this, "ERRO: ListNull", Toast.LENGTH_LONG).show()
             }
 
         })
@@ -55,7 +53,16 @@ class BooksActivity : AppCompatActivity() {
 
             setHasFixedSize(true)
 
-            adapter = BooksAdapter(listBook)
+            adapter = BooksAdapter(listBook){ book: Book ->
+
+               val intent = DetailsActivity.getStartIntent(
+                    this@BooksActivity,
+                    book.title,
+                    book.description
+               )
+
+                this@BooksActivity.startActivity(intent)
+            }
         }
 
     }
