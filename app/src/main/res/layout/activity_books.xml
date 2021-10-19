@@ -27,15 +27,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewBooksActivity"
+    <ViewFlipper
+        android:id="@+id/viewFlipperBooks"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        tools:listitem="@layout/item_book"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarBooksActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarBooksActivity">
+
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminateTint="@color/black"
+            android:layout_gravity="center"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBooksActivity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2dp"
+            tools:listitem="@layout/item_book"/>
+
+
+        <TextView
+            android:id="@+id/textErroType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_books_item"
+            android:fontFamily="sans-serif"
+            android:padding="5dp"
+            tools:text="error_type_text"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+    </ViewFlipper>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -25,7 +25,6 @@ class BooksActivity : AppCompatActivity() {
         toolbarSettings()
 
         // ViewModel:
-        booksViewModel.getBooks()
         booksViewModel.booksLiveData.observe(this, Observer { list ->
 
             list?.let { books ->
@@ -33,6 +32,21 @@ class BooksActivity : AppCompatActivity() {
             }
 
         })
+
+        booksViewModel.viewFlipperLiveData.observe(this, Observer {
+            it?.let { viewFlipper ->
+
+                binding.viewFlipperBooks.displayedChild = viewFlipper.first
+
+                viewFlipper.second?.let { errorMessageId ->
+
+                    binding.textErroType.text = getString(errorMessageId)
+
+                }
+            }
+        })
+
+        booksViewModel.getBooks()
     }
 
     private fun toolbarSettings(){

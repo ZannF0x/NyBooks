@@ -9,5 +9,9 @@
     <string name="title_label">Title:</string>
     <string name="description_label">Description:</string>
 
+    <!-- Erro Types -->
+    <string name="erro_401">Not Authorized</string>
+    <string name="erro_400_generic">Unhandled Error</string>
+    <string name="erro_500_generic">Catastrophic Error</string>
 
 </resources>
