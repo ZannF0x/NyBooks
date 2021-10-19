@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.zannardyapps.nybooks.R
 import com.zannardyapps.nybooks.databinding.ActivityDetailsBinding
 
 class DetailsActivity : AppCompatActivity() {
@@ -15,6 +16,8 @@ class DetailsActivity : AppCompatActivity() {
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        toolbarSettings()
+
         val title = intent.getStringExtra(EXTRA_TITLE)
         val description = intent.getStringExtra(EXTRA_DESCRIPTION)
 
@@ -23,6 +26,13 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
+
+    private fun toolbarSettings(){
+        val toolbarDetailsActivity = binding.toolbarDetailsActivity
+        toolbarDetailsActivity.title = getString(R.string.details_toolbar_title)
+        setSupportActionBar(toolbarDetailsActivity)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
 
     companion object {
 
